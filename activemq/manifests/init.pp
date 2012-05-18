@@ -14,6 +14,12 @@ class activemq {
 	   ensure => 'link',
 	   target => '/opt/apache-activemq-5.6.0',
 	}
+	file {'activemq-service':
+		path => "/opt/activemq/activemq-service",
+		mode => 755,
+		content => template("activemq-service.erb"),
+		notify => Service[activemq]
+	}
 	file { '/etc/init.d/activemq':
 	   ensure => 'link',
 	   target => '/opt/activemq/bin/activemq',
