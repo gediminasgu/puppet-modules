@@ -18,8 +18,9 @@ class activemq {
 	   ensure => 'link',
 	   target => '/opt/activemq/bin/activemq',
 	}
-	exec {"register_activemq":
-		command => "update-rc.d activemq defaults",
+	file { '/etc/rc2.d/S20activemq':
+	   ensure => 'link',
+	   target => '/etc/init.d/activemq',
 	}
 	service { "activemq":
 		ensure => "running",
