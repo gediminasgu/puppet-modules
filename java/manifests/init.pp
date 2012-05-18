@@ -7,9 +7,6 @@ class java {
         cwd => "/usr/lib/jvm/",
         creates => "/usr/lib/jvm/jre-7u3-linux-i586.tar.gz"
     }
-    file { "/usr/lib/jvm/jre-7u3-linux-i586.tar.gz":
-        mode => 750
-    }
     exec {"unzip_java":
         command => "/bin/tar zxvf jre-7u3-linux-i586.tar.gz",
         cwd => "/usr/lib/jvm/",
