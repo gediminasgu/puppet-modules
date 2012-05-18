@@ -4,7 +4,7 @@ class activemq {
         cwd => "/opt",
         creates => "/opt/apache-activemq-5.6.0-bin.tar.gz"
     }
-    exec {"unzip_java":
+    exec {"unzip_activemq":
         command => "/bin/tar zxvf apache-activemq-5.6.0-bin.tar.gz",
         cwd => "/opt",
         creates => "/opt/apache-activemq-5.6.0",
