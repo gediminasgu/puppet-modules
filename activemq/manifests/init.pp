@@ -19,7 +19,7 @@ class activemq {
 	   target => '/opt/activemq/bin/activemq',
 	}
 	service { "activemq":
-		enabled => true,
+		enable => true,
 		ensure => "running",
 	}
 }
