@@ -18,13 +18,14 @@ class activemq {
 		path => "/etc/init.d/activemq",
 		mode => 755,
 		content => template("activemq/activemq-service.erb"),
-		notify => Service[activemq]
+		notify => Exec[activemq-restart]
 	}
 	file { '/etc/rc2.d/S20activemq':
 	   ensure => 'link',
 	   target => '/etc/init.d/activemq',
 	}
-	service { "activemq":
-		ensure => "running",
+	exec { "activemq-restart":
+        command => "/etc/init.d/activemq restart",
+        require => [File["/etc/init.d/activemq"]]
 	}
 }
