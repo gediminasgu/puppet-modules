@@ -4,4 +4,6 @@ node default {
   include java
   include activemq
   include tomcat
+  include jetty
+  include mule
 }

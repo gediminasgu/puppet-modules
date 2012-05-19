@@ -6,6 +6,9 @@ class mule(
         command => "/usr/bin/wget http://dist.codehaus.org/mule/distributions/$package.tar.gz",
         cwd => "/opt",
         creates => "/opt/$package.tar.gz"
+        timeout => 3600,
+        tries => 3,
+        try_sleep => 15
     }
     exec {"unzip_mule":
         command => "/bin/tar zxvf $package.tar.gz",
