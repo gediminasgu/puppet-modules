@@ -1,5 +1,5 @@
 class tomcat(
-	$version = "7.0.27"
+	$version = "7.0.27",
 	$package = "apache-tomcat-$version"
 ) {
     exec { "download_tomcat":
@@ -15,7 +15,7 @@ class tomcat(
     }
 	file { '/usr/local/tomcat':
 	   ensure => 'link',
-	   target => '/usr/local/$package',
+           target => "/usr/local/$package",
 	}
 	file {'tomcat-service':
 		path => "/etc/init.d/tomcat",

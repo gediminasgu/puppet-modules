@@ -22,7 +22,7 @@ class activemq {
 	}
 	file {'activemq-config':
 		path => "/opt/activemq/conf/activemq.xml",
-		mode => 555,
+		mode => 664,
 		content => template("activemq/activemq.xml.erb"),
 		require => [File['/opt/activemq/conf/activemq.xml']],
 #		notify => Service[activemq]
