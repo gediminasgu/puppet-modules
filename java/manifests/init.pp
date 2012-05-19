@@ -13,8 +13,8 @@ class java {
         creates => "/usr/lib/jvm/jre-7u3-linux-i586",
         require => [Exec["download_java"]]
     }
-    exec {"set default jvm":
-        command => "/usr/bin/update-alternatives --install /usr/bin/java java /usr/lib/jvm/jre1.7.0_03/bin/java 1",
-        unless  => "/usr/bin/test $(readlink /etc/alternatives/java) = /usr/lib/jvm/jre1.7.0_03/bin/java",
-    }
+#    exec {"set default jvm":
+#        command => "/usr/bin/update-alternatives --install /usr/bin/java java /usr/lib/jvm/jre1.7.0_03/bin/java 1",
+#        unless  => "/usr/bin/test $(readlink /etc/alternatives/java) = /usr/lib/jvm/jre1.7.0_03/bin/java",
+#    }
 }
