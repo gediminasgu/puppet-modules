@@ -1,2 +1,15 @@
-ACTIVEMQ_OPTS_MEMORY="-Xms64M -Xmx64M"
-./activemq
+export ACTIVEMQ_OPTS_MEMORY="-Xms64M -Xmx64M"
+case $1 in
+start)
+sh /opt/activemq/activemq
+;;
+stop)
+sh /opt/activemq/activemq-stop
+;;
+restart)
+sh /opt/activemq/activemq-stop
+sh /opt/activemq/activemq
+;;
+esac
+exit 0
+

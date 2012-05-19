@@ -15,14 +15,16 @@ class activemq {
 	   target => '/opt/apache-activemq-5.6.0',
 	}
 	file {'activemq-service':
-		path => "/opt/activemq/activemq-service",
+		path => "/etc/activemq/activemq-stop",
 		mode => 755,
-		content => template("activemq-service.erb"),
-		notify => Service[activemq]
+		content => template("activemq/activemq-stop.erb"),
 	}
-	file { '/etc/init.d/activemq':
-	   ensure => 'link',
-	   target => '/opt/activemq/bin/activemq',
+	file {'activemq-service':
+		path => "/etc/init.d/activemq",
+		mode => 755,
+		content => template("activemq/activemq-service.erb"),
+		require => [File['/etc/activemq/activemq-stop']]
+		notify => Service[activemq]
 	}
 	file { '/etc/rc2.d/S20activemq':
 	   ensure => 'link',

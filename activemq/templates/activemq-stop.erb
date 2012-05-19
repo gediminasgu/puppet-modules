@@ -1,0 +1,12 @@
+set -u
+set -e
+
+processid=`ps aux | grep activemq | head -n1 | awk -F' ' '{print $2}'`
+
+if [ -n "$processid" ]; then
+	while kill -0 "$processid"; do
+	    echo "Killing activemq with pid $processid"
+       kill $processid
+       sleep 0.5
+   done 	
+fi
