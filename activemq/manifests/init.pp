@@ -20,7 +20,7 @@ class activemq {
 		content => template("activemq/activemq-service.erb"),
 #		notify => Service[activemq]
 	}
-	file {'activemq-service':
+	file {'activemq-config':
 		path => "/opt/activemq/conf/activemq.xml",
 		mode => 755,
 		content => template("activemq/activemq.xml.erb"),
