@@ -18,7 +18,6 @@ class activemq {
 		path => "/etc/init.d/activemq",
 		mode => 755,
 		content => template("activemq/activemq-service.erb"),
-		require => [File['/opt/activemq/activemq-stop']],
 		notify => Service[activemq]
 	}
 	file { '/etc/rc2.d/S20activemq':
