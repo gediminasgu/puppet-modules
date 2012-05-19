@@ -1,8 +1,9 @@
 class tomcat(
-	$package = "apache-tomcat-7.0.27"
+	$version = "7.0.27"
+	$package = "apache-tomcat-$version"
 ) {
     exec { "download_tomcat":
-        command => "/usr/bin/wget http://apache.mirror.vu.lt/apache/tomcat/tomcat-7/v7.0.25/bin/$package.tar.gz",
+        command => "/usr/bin/wget http://apache.mirror.vu.lt/apache/tomcat/tomcat-7/v$version/bin/$package.tar.gz",
         cwd => "/usr/local",
         creates => "/usr/local/$package.tar.gz"
     }
