@@ -1,0 +1,15 @@
+export JAVA_OPTS="-Xms512m -Xmx512m -XX:MaxPermSize=512m"
+
+case $1 in
+start)
+sh /usr/local/tomcat/bin/startup.sh
+;;
+stop)
+sh /usr/local/tomcat/bin/shutdown.sh
+;;
+restart)
+sh /usr/local/tomcat/bin/shutdown.sh
+sh /usr/local/tomcat/bin/startup.sh
+;;
+esac
+exit 0
