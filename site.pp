@@ -13,8 +13,11 @@ node default inherits basenode {
   include mule
 
   include mysql
-  class { 'mysql::server':
-    config_hash => {'root_password' => $mysql_root_pw}
+  class { 'mysql::server': }
+  mysql::db { 'mhe_joomla':
+    user     => 'mhe_user',
+    password => $mysql_mhe_user_pw,
+    host     => 'localhost',
+    grant    => ['all'],
   }
-
 }
