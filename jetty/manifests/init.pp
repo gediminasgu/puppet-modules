@@ -1,7 +1,7 @@
-class jetty(
-	$version = "8.1.3",
+class jetty{
+	$version = "8.1.3"
 	$package = "jetty-hightide-$version.v20120416"
-) {
+
     exec { "download_jetty":
         command => "/usr/bin/wget http://dist.codehaus.org/jetty/jetty-hightide-$version/$package.tar.gz",
         cwd => "/opt",

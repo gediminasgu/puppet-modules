@@ -1,11 +1,10 @@
-class mule(
-	$version = "3.2.1",
+class mule{
+	$version = "3.2.1"
 	$package = "mule-standalone-$version"
-) {
     exec { "download_mule":
         command => "/usr/bin/wget http://dist.codehaus.org/mule/distributions/$package.tar.gz",
         cwd => "/opt",
-        creates => "/opt/$package.tar.gz"
+        creates => "/opt/$package.tar.gz",
         timeout => 3600,
         tries => 3,
         try_sleep => 15

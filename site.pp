@@ -1,6 +1,9 @@
-# git submodule add git://github.com/duritong/puppet-mysql.git
-# cp site.pp /etc/puppet/manifests/
+# git submodule add git://github.com/puppetlabs/puppetlabs-mysql.git
+# mv puppetlabs-mysql mysql
+# ln site.pp /etc/puppet/manifests/site.pp
 # puppet apply /etc/puppet/manifests/site.pp
+
+import 'basenode.pp'
 node default inherits basenode {
   include mongodb
   include java
