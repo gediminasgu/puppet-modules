@@ -1,3 +1,5 @@
+# apt-get install git-core
+# git clone git://github.com/gediminasgu/puppet-modules.git /etc/puppet/modules
 # git submodule add git://github.com/puppetlabs/puppetlabs-mysql.git /etc/puppet/modules/mysql
 # git submodule add git://github.com/garthk/puppet-rabbitmq.git /etc/puppet/modules/rabbitmq
 # git submodule add git://github.com/BenoitCattie/puppet-nginx.git /etc/puppet/modules/nginx

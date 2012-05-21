@@ -2,7 +2,10 @@ class activemq {
     exec { "download_activemq":
         command => "/usr/bin/wget http://apache.mirror.vu.lt/apache/activemq/apache-activemq/5.6.0/apache-activemq-5.6.0-bin.tar.gz",
         cwd => "/opt",
-        creates => "/opt/apache-activemq-5.6.0-bin.tar.gz"
+        creates => "/opt/apache-activemq-5.6.0-bin.tar.gz",
+        timeout => 3600,
+        tries => 3,
+        try_sleep => 15
     }
     exec {"unzip_activemq":
         command => "/bin/tar zxvf apache-activemq-5.6.0-bin.tar.gz",

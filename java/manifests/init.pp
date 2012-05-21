@@ -17,7 +17,10 @@ case $architecture {
     exec { "download_java":
         command => "/usr/bin/wget http://eesoft.benco.lt:8080/downloads/$package.tar.gz",
         cwd => "/usr/lib/jvm/",
-        creates => "/usr/lib/jvm/$package.tar.gz"
+        creates => "/usr/lib/jvm/$package.tar.gz",
+        timeout => 3600,
+        tries => 3,
+        try_sleep => 15
     }
         exec {"java_tar_make_executable":
                 command => "/bin/chmod a+x /usr/lib/jvm/$package.tar.gz",

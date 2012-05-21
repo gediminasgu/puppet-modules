@@ -5,7 +5,10 @@ class jetty{
     exec { "download_jetty":
         command => "/usr/bin/wget http://dist.codehaus.org/jetty/jetty-hightide-$version/$package.tar.gz",
         cwd => "/opt",
-        creates => "/opt/$package.tar.gz"
+        creates => "/opt/$package.tar.gz",
+        timeout => 3600,
+        tries => 3,
+        try_sleep => 15
     }
     exec {"unzip_jetty":
         command => "/bin/tar zxvf $package.tar.gz",

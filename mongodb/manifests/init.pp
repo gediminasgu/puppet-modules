@@ -24,6 +24,9 @@ class mongodb {
 		command => "apt-get update",
 		unless => "ls /usr/bin | grep mongo",
 		require => Exec["10gen-apt-key"],
+        timeout => 3600,
+        tries => 3,
+        try_sleep => 15
 	}
 
 	package { $mongodb::params::package:
