@@ -31,9 +31,18 @@ class mule{
 	   ensure => 'link',
 	   target => '/etc/init.d/mule',
 	}
+	file { "/opt/mule-standalone/apps":
+		ensure => "directory",
+		mode => 755,
+		owner => $deploy_user,
+		group => $deploy_group
+		require => [File['/opt/mule-standalone/apps']]
+	}
 	file { "/opt/mule-apps":
 		ensure => "directory",
-		mode => 775
+		mode => 744,
+		owner => $deploy_user,
+		group => $deploy_group
 	}
 #	service { "mule":
 #		ensure => "running",
