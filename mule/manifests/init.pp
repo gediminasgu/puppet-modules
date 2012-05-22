@@ -35,7 +35,7 @@ class mule{
 		ensure => "directory",
 		mode => 755,
 		owner => $deploy_user,
-		group => $deploy_group
+		group => $deploy_group,
 		require => [File['/opt/mule-standalone/apps']]
 	}
 	file { "/opt/mule-apps":

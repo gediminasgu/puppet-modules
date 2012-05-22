@@ -17,10 +17,11 @@ class tomcat{
            target => "/usr/local/$package",
 	}
 	file {'tomcat-service':
+		ensure => present,
 		path => "/etc/init.d/tomcat",
 		mode => 755,
 		content => template("tomcat/tomcat-service.erb"),
-#		notify => Service[tomcat]
+		notify => Service[tomcat]
 	}
 	file { '/etc/rc1.d/K99tomcat':
 	   ensure => 'link',
@@ -30,7 +31,7 @@ class tomcat{
 	   ensure => 'link',
 	   target => '/etc/init.d/tomcat',
 	}
-#	service { "tomcat":
-#		ensure => "running",
-#	}
+	service { "tomcat":
+		ensure => "running",
+	}
 }

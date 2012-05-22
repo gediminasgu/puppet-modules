@@ -33,13 +33,13 @@ class jetty{
 	   target => '/etc/init.d/jetty',
 	}
 	file {'jetty-config':
+		ensure => present,
 		path => "/opt/jetty/etc/jetty.xml",
 		mode => 664,
 		content => template("jetty/jetty.xml.erb"),
-		require => [File['/opt/jetty/etc/jetty.xml']],
-#		notify => Service[jetty]
+		notify => Service[jetty]
 	}
-#	service { "jetty":
-#		ensure => "running",
-#	}
+	service { "jetty":
+			ensure => "running",
+	}
 }
