@@ -39,4 +39,14 @@ node default inherits basenode {
   package { 'zip': ensure => present }
   package { 'unzip': ensure => present }
   package { 'sendmail': ensure => present }
+
+  include puppi
+  include puppi::prerequisites
+  puppi::project::maven { "amr":
+    source       => "http://192.168.1.124:8088/nexus/content/repositories/releases/com/meterhub/meterhub.amr/",
+#    user         => "myappuser",
+    document_root  => "/srv/tomcat/myapp/webapps",
+    report_email => "fzr600@gmail.com",
+    enable       => "true",
+  }
 }
