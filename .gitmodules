@@ -4,3 +4,12 @@
 [submodule "puppi"]
 	path = puppi
 	url = https://gediminasgu@github.com/gediminasgu/puppi.git
+[submodule "mysql"]
+	path = mysql
+	url = git://github.com/puppetlabs/puppetlabs-mysql.git
+[submodule "rabbitmq"]
+	path = rabbitmq
+	url = git://github.com/garthk/puppet-rabbitmq.git
+[submodule "php5-fpm"]
+	path = php5-fpm
+	url = git://github.com/BenoitCattie/puppet-php5-fpm.git
