@@ -1,3 +1,6 @@
 [submodule "nginx"]
 	path = nginx
 	url = git@bitbucket.org:gediminasgu/puppet-nginx.git
+[submodule "puppi"]
+	path = puppi
+	url = https://gediminasgu@github.com/gediminasgu/puppi.git
