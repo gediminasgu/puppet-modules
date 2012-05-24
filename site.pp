@@ -1,9 +1,7 @@
 # apt-get install git-core
 # git clone git://github.com/gediminasgu/puppet-modules.git /etc/puppet/modules
-# git submodule add git://github.com/puppetlabs/puppetlabs-mysql.git /etc/puppet/modules/mysql
-# git submodule add git://github.com/garthk/puppet-rabbitmq.git /etc/puppet/modules/rabbitmq
-# git submodule add git://github.com/BenoitCattie/puppet-nginx.git /etc/puppet/modules/nginx
-# git submodule add git://github.com/BenoitCattie/puppet-php5-fpm.git /etc/puppet/modules/php5-fpm
+# cd /etc/puppet/modules
+# git pull && git submodule init && git submodule update && git submodule status
 # ln -s /etc/puppet/modules/site.pp /etc/puppet/manifests/site.pp
 # puppet apply /etc/puppet/manifests/site.pp
 
@@ -45,7 +43,7 @@ node default inherits basenode {
   puppi::project::maven { "amr":
     source       => "http://192.168.1.124:8088/nexus/content/repositories/releases/com/meterhub/meterhub.amr/",
 #    user         => "myappuser",
-    document_root  => "/srv/tomcat/myapp/webapps",
+    zip_root  => "/srv/tomcat/myapp/webapps",
     report_email => "fzr600@gmail.com",
     enable       => "true",
   }
