@@ -43,8 +43,9 @@ node default inherits basenode {
   puppi::project::maven { "amr":
     source       => "http://192.168.1.124:8088/nexus/content/repositories/releases/com/meterhub/meterhub.amr/",
 #    user         => "myappuser",
-    zip_root  => "/srv/tomcat/myapp/webapps",
+    zip_root  => "/opt/mule-standalone/apps/amr",
     report_email => "fzr600@gmail.com",
     enable       => "true",
+	check_deploy => "no",
   }
 }
