@@ -15,4 +15,4 @@
 	url = git://github.com/BenoitCattie/puppet-php5-fpm.git
 [submodule "nexus"]
 	path = nexus
-	url = git://github.com/cescoffier/puppet-nexus.git
+	url = https://gediminasgu@github.com/gediminasgu/puppet-nexus.git
