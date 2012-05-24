@@ -44,7 +44,36 @@ class mule{
 		owner => $deploy_user,
 		group => $deploy_group
 	}
-#	service { "mule":
-#		ensure => "running",
-#	}
+	service { "mule":
+		ensure => "running",
+	}
+
+	nexus::artifact {'activemq-all':
+		gav => "org.apache.activemq:activemq-all:5.6.0",
+		repository => "public",
+		output => "/opt/mule-standalone/lib/shared/default/activemq-all-5.6.0.jar",
+		ensure => present
+	}
+
+	nexus::artifact {'com.meterhub.amr.contract':
+		gav => "com.meterhub:meterhub.amr-contract:1.0.8",
+		repository => "releases",
+		output => "/opt/mule-standalone/lib/shared/default/meterhub.amr-contract-1.0.8.jar",
+		ensure => present
+	}
+
+	nexus::artifact {'jackson-core-asl':
+		gav => "org.codehaus.jackson:jackson-core-asl:1.9.7",
+		repository => "public",
+		output => "/opt/mule-standalone/lib/shared/default/jackson-core-asl-1.9.7.jar",
+		ensure => present
+	}
+
+	nexus::artifact {'mongo-java-driver':
+		gav => "org.mongodb:mongo-java-driver:2.7.3",
+		repository => "public",
+		output => "/opt/mule-standalone/lib/shared/default/mongo-2.7.2.jar",
+		ensure => present
+	}
+
 }

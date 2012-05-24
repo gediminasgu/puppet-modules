@@ -13,3 +13,6 @@
 [submodule "php5-fpm"]
 	path = php5-fpm
 	url = git://github.com/BenoitCattie/puppet-php5-fpm.git
+[submodule "nexus"]
+	path = nexus
+	url = git://github.com/cescoffier/puppet-nexus.git
