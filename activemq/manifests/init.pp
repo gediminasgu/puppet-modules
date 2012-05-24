@@ -34,6 +34,10 @@ class activemq {
 	   ensure => 'link',
 	   target => '/etc/init.d/activemq',
 	}
+	file { '/etc/rc1.d/K20activemq':
+	   ensure => 'link',
+	   target => '/etc/init.d/activemq',
+	}
 	service { "activemq":
 		ensure => "running",
 	}

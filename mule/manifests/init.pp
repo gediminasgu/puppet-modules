@@ -19,9 +19,11 @@ class mule{
 	   ensure => 'link',
            target => "/opt/$package",
 	}
-	file { '/etc/init.d/mule':
-	   ensure => 'link',
-           target => "/opt/mule-standalone/bin/mule",
+	file {'mule-service':
+		path => "/etc/init.d/mule",
+		mode => 755,
+		content => template("mule/service.erb"),
+		notify => Service[mule]
 	}
 	file { '/etc/rc1.d/K99mule':
 	   ensure => 'link',
