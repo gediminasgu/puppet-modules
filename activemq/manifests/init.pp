@@ -21,20 +21,20 @@ class activemq {
 		path => "/etc/init.d/activemq",
 		mode => 755,
 		content => template("activemq/activemq-service.erb"),
-#		notify => Service[activemq]
+		notify => Service[activemq]
 	}
 	file {'activemq-config':
 		ensure => present,
 		path => "/opt/activemq/conf/activemq.xml",
 		mode => 664,
 		content => template("activemq/activemq.xml.erb"),
-#		notify => Service[activemq]
+		notify => Service[activemq]
 	}
 	file { '/etc/rc2.d/S20activemq':
 	   ensure => 'link',
 	   target => '/etc/init.d/activemq',
 	}
-#	service { "activemq":
-#		ensure => "running",
-#	}
+	service { "activemq":
+		ensure => "running",
+	}
 }
