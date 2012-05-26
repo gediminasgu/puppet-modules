@@ -58,6 +58,21 @@ node default inherits basenode {
 #	auto_deploy => true,
   }
 
+  puppi::check { 'WEB-FRONT-test':
+    command => 'check_http -H localhost -p 80 -u "/index.php?option=com_content&view=featured&Itemid=101&lang=lt"',
+    hostwide => 'yes',
+  }
+
+  puppi::check { 'WEB-ManagementAPI-test':
+    command => 'check_http -H localhost -p 8080 -u "/managementapi/classificators/protocols"',
+    hostwide => 'yes',
+  }
+
+  puppi::check { 'WEB-DatawarehouseAPI-test':
+    command => 'check_http -H localhost -p 8080 -u "/datawarehouse"',
+    hostwide => 'yes',
+  }
+
   puppi::log { "amr":
     description => "AMR Mule log" ,
     log => "/opt/mule-standalone/logs/mule-app-amr.log",
