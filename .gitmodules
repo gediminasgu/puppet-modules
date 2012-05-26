@@ -6,13 +6,13 @@
 	url = https://gediminasgu@github.com/gediminasgu/puppi.git
 [submodule "mysql"]
 	path = mysql
-	url = git://github.com/puppetlabs/puppetlabs-mysql.git
+	url = https://gediminasgu@github.com/gediminasgu/puppetlabs-mysql.git
 [submodule "rabbitmq"]
 	path = rabbitmq
-	url = git://github.com/garthk/puppet-rabbitmq.git
+	url = https://gediminasgu@github.com/gediminasgu/puppet-rabbitmq.git
 [submodule "php5-fpm"]
 	path = php5-fpm
-	url = git://github.com/BenoitCattie/puppet-php5-fpm.git
+	url = https://gediminasgu@github.com/gediminasgu/puppet-php5-fpm.git
 [submodule "nexus"]
 	path = nexus
 	url = https://gediminasgu@github.com/gediminasgu/puppet-nexus.git
