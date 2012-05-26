@@ -50,13 +50,12 @@ node default inherits basenode {
     enable       => "true",
 	check_deploy => "no",
 	postdeploy_customcommand => "/etc/puppi/scripts/check_version.sh ${mule::params::jmx_port} com.meterhub.amr:type=Monitoring",
+	always_deploy => "no",
+#	auto_deploy => true,
   }
-	puppi::log { "mule":
-		description => "Mule log" ,
-		log => "/opt/mule-standalone/logs/mule.log",
-	}
-	puppi::log { "amr":
-		description => "AMR Mule log" ,
-		log => "/opt/mule-standalone/logs/mule-app-amr.log",
-	}
+
+  puppi::log { "amr":
+    description => "AMR Mule log" ,
+    log => "/opt/mule-standalone/logs/mule-app-amr.log",
+  }
 }
