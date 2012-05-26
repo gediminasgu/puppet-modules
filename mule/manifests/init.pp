@@ -1,6 +1,8 @@
 class mule{
 	$version = "3.2.1"
 	$package = "mule-standalone-$version"
+	require mule::params
+	
     exec { "download_mule":
         command => "/usr/bin/wget http://dist.codehaus.org/mule/distributions/$package.tar.gz",
         cwd => "/opt",
