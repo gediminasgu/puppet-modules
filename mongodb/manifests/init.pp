@@ -54,4 +54,8 @@ class mongodb {
     hostwide => 'yes',
   }
 
+  puppi::check { 'MongoDB-port-Check':
+    command => "check_tcp -p 27017 -r critical",
+    hostwide => 'yes',
+  }
 }
