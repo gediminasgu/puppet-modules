@@ -40,6 +40,8 @@ node default inherits basenode {
 
   include puppi
   include puppi::prerequisites
+  
+  require mule::params
   puppi::project::maven { "amr":
     source       => "http://$nexus_user:$nexus_password@192.168.1.124:8088/nexus/content/repositories/releases/com/meterhub/meterhub.amr/",
 #    user         => "myappuser",
@@ -47,5 +49,6 @@ node default inherits basenode {
     report_email => "fzr600@gmail.com",
     enable       => "true",
 	check_deploy => "no",
+	postdeploy_customcommand => "/etc/puppi/scripts/check_version.sh ${mule::params::jmx_port} com.meterhub.amr:type=Monitoring",
   }
 }
