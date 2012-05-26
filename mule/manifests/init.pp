@@ -80,6 +80,11 @@ class mule{
 		ensure => present
 	}
 
+  puppi::check { 'MULE-Proc-Check':
+    command => "check_procs -c 2:2 -a mule",
+    hostwide => 'yes',
+  }
+
   puppi::check { 'MULE-Error-Check':
     command => "check_jmx.sh -U service:jmx:rmi:///jndi/rmi://localhost:${mule::params::jmx_port}/jmxrmi -O 'Mule.amr:name=\"application totals\",type=Application' -A ExecutionErrors -w 0 -c 100",
     hostwide => 'yes',

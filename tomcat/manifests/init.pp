@@ -34,4 +34,9 @@ class tomcat{
 #	service { "tomcat":
 #		ensure => "running",
 #	}
+
+  puppi::check { 'Tomcat-Proc-Check':
+    command => "check_procs -c 1:1 -a tomcat",
+    hostwide => 'yes',
+  }
 }

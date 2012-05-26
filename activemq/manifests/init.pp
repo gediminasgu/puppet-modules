@@ -41,4 +41,10 @@ class activemq {
 	service { "activemq":
 		ensure => "running",
 	}
+	
+  puppi::check { 'ACTIVEMQ-Proc-Check':
+    command => "check_procs -c 1:1 -a activemq",
+    hostwide => 'yes',
+  }
+
 }

@@ -48,4 +48,10 @@ class mongodb {
 			require => Package[$mongodb::params::package],
 		}
 	}
+	
+  puppi::check { 'MongoDB-Proc-Check':
+    command => "check_procs -c 1:1 -C mongod",
+    hostwide => 'yes',
+  }
+
 }

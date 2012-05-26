@@ -42,4 +42,10 @@ class jetty{
 	service { "jetty":
 			ensure => "running",
 	}
+	
+  puppi::check { 'JETTY-Proc-Check':
+    command => "check_procs -c 1:1 -a jetty",
+    hostwide => 'yes',
+  }
+
 }
