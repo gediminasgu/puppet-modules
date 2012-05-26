@@ -94,10 +94,13 @@ class mule{
     command => "check_jmx.sh -U service:jmx:rmi:///jndi/rmi://localhost:${mule::params::jmx_port}/jmxrmi -O 'Mule.amr:name=\"application totals\",type=Application' -A FatalErrors -w 0 -c 3",
     hostwide => 'yes',
   }
+  puppi::check { 'MULE-JMX-port-Check':
+    command => "check_tcp -p ${mule::params::jmx_port} -r warn",
+    hostwide => 'yes',
+  }
   
   	puppi::log { "mule":
 		description => "Mule log" ,
 		log => "/opt/mule-standalone/logs/mule.log",
 	}
-
 }

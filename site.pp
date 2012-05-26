@@ -23,6 +23,10 @@ node default inherits basenode {
     host     => 'localhost',
     grant    => ['all'],
   }
+  puppi::check { 'MYSQL-MHEDB-Check':
+    command => "check_mysql -d mhe_joomla -u mhe_user -p $mysql_mhe_user_pw",
+    hostwide => 'yes',
+  }
   package { 'php5-mysql': ensure => present }
 
   include php5-fpm

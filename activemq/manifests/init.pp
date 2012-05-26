@@ -1,4 +1,6 @@
 class activemq {
+	require activemq::params
+	
     exec { "download_activemq":
         command => "/usr/bin/wget http://apache.mirror.vu.lt/apache/activemq/apache-activemq/5.6.0/apache-activemq-5.6.0-bin.tar.gz",
         cwd => "/opt",
@@ -44,6 +46,16 @@ class activemq {
 	
   puppi::check { 'ACTIVEMQ-Proc-Check':
     command => "check_procs -c 1:1 -a activemq",
+    hostwide => 'yes',
+  }
+
+  puppi::check { 'ACTIVEMQ-port-Check':
+    command => "check_tcp -p 61616 -r critical",
+    hostwide => 'yes',
+  }
+
+  puppi::check { 'ACTIVEMQ-JMX-port-Check':
+    command => "check_tcp -p ${activemq::params::jmx_port} -r warn",
     hostwide => 'yes',
   }
 
