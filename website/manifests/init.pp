@@ -15,8 +15,13 @@ class website {
     $package = "20120605"
     $sqlpackage = "20120605"
 
+	file { "/var/www":
+	    ensure => "directory",
+	}
+
 	file { "/var/www/joomla":
 	    ensure => "directory",
+	    require => [File["/var/www"]]
 	}
 
     exec { "download":
@@ -25,7 +30,8 @@ class website {
         creates => "/var/www/joomla/joomla_$package.zip",
         timeout => 3600,
         tries => 3,
-        try_sleep => 15
+        try_sleep => 15,
+	    require => [File["/var/www/joomla"]]
     }
 
     exec {"unzip":
@@ -43,18 +49,11 @@ class website {
         require => [Exec["unzip"]]
 	}
 
-	file {'nginx.configuration':
-		ensure => present,
-		path => "/etc/nginx/sites-available/default",
-		mode => 755,
-		content => template("website/nginx.site.default.erb"),
-        require => [Exec["unzip"]]
-	}
-	
 	include puppi
 	include puppi::prerequisites
 	puppi::project::mysql { "sql":
         init_source      => "http://eesoft.benco.lt:8080/downloads/joomla_$sqlpackage.sql",
+		source           => "http://eesoft.benco.lt:8080/downloads/no.sql",
         mysql_user       => "mhe_user",
         mysql_host       => "localhost",
         mysql_database   => "mhe_joomla",

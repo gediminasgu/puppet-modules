@@ -77,4 +77,6 @@ node default inherits basenode {
     description => "AMR Mule log" ,
     log => "/opt/mule-standalone/logs/mule-app-amr.log",
   }
+  
+  include website
 }

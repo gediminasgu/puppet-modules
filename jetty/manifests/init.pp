@@ -43,6 +43,46 @@ class jetty{
 			ensure => "running",
 	}
 	
+	file { '/opt/jetty/webapps/async-rest':
+	   ensure => absent,
+	   force => true,
+	}
+
+	file { '/opt/jetty/webapps/cometd.war':
+	   ensure => absent,
+	   force => true,
+	}
+
+	file { '/opt/jetty/webapps/root':
+	   ensure => absent,
+	   force => true,
+	}
+
+	file { '/opt/jetty/webapps/spdy.war':
+	   ensure => absent,
+	   force => true,
+	}
+
+	file { '/opt/jetty/webapps/test-annotations':
+	   ensure => absent,
+	   force => true,
+	}
+
+	file { '/opt/jetty/webapps/test-jaas':
+	   ensure => absent,
+	   force => true,
+	}
+
+	file { '/opt/jetty/webapps/test-jndi':
+	   ensure => absent,
+	   force => true,
+	}
+
+	file { '/opt/jetty/webapps/test.war':
+	   ensure => absent,
+	   force => true,
+	}
+	
   puppi::check { 'JETTY-Proc-Check':
     command => "check_procs -c 1:1 -a jetty",
     hostwide => 'yes',

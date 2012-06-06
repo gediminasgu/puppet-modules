@@ -6,9 +6,10 @@ node basenode {
 	$deploy_group = 'user'
 	$nexus_user = 'nexus_user'
 	$nexus_password = 'nexus_password'
+	$nexus_url_base = '127.0.0.1/nexus'
 	
   class {'nexus':
-    url => "http://192.168.1.124:8088/nexus",
+    url => 'http://$nexus_url_base',
     username => $nexus_user,
     password => $nexus_password,
   }

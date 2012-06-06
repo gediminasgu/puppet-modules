@@ -35,8 +35,32 @@ class tomcat{
 #		ensure => "running",
 #	}
 
-  puppi::check { 'Tomcat-Proc-Check':
-    command => "check_procs -c 1:1 -a tomcat",
-    hostwide => 'yes',
-  }
-}
+  	file { '/usr/local/tomcat/webapps/ROOT':
+	   ensure => absent,
+	   force => true,
+	}
+  	file { '/usr/local/tomcat/webapps/manager':
+	   ensure => absent,
+	   force => true,
+	}
+  	file { '/usr/local/tomcat/webapps/docs':
+	   ensure => absent,
+	   force => true,
+	}
+  	file { '/usr/local/tomcat/webapps/examples':
+	   ensure => absent,
+	   force => true,
+	}
+  	file { '/usr/local/tomcat/webapps/host-manager':
+	   ensure => absent,
+	   force => true,
+	}
+
+	puppi::check { 'Tomcat-Proc-Check':
+		command => "check_procs -c 1:1 -a tomcat",
+		hostwide => 'yes',
+	}
+	puppi::log { "tomcat":
+		description => "Tomcat log" ,
+		log => "/usr/local/tomcat/logs/catalina.out",
+	}
