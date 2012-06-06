@@ -16,3 +16,6 @@
 [submodule "nexus"]
 	path = nexus
 	url = https://gediminasgu@github.com/gediminasgu/puppet-nexus.git
+[submodule "website"]
+	path = website
+	url = https://gediminasgu@bitbucket.org/gediminasgu/puppet-website.git
