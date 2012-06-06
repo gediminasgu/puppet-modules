@@ -45,19 +45,6 @@ node default inherits basenode {
   include puppi
   include puppi::prerequisites
   
-  require mule::params
-  puppi::project::maven { "amr":
-    source       => "http://$nexus_user:$nexus_password@192.168.1.124:8088/nexus/content/repositories/releases/com/meterhub/meterhub.amr/",
-#    user         => "myappuser",
-    zip_root  => "/opt/mule-standalone/apps/amr",
-    report_email => "fzr600@gmail.com",
-    enable       => "true",
-	check_deploy => "no",
-	postdeploy_customcommand => "/etc/puppi/scripts/check_version.sh ${mule::params::jmx_port} com.meterhub.amr:type=Monitoring",
-	always_deploy => "no",
-#	auto_deploy => true,
-  }
-
   puppi::check { 'WEB-FRONT-test':
     command => 'check_http -H localhost -p 80 -u "/index.php?option=com_content&view=featured&Itemid=101&lang=lt"',
     hostwide => 'yes',
@@ -73,10 +60,6 @@ node default inherits basenode {
     hostwide => 'yes',
   }
 
-  puppi::log { "amr":
-    description => "AMR Mule log" ,
-    log => "/opt/mule-standalone/logs/mule-app-amr.log",
-  }
-  
+  include amr
   include website
 }
