@@ -18,7 +18,7 @@
 	url = https://gediminasgu@github.com/gediminasgu/puppet-nexus.git
 [submodule "website"]
 	path = website
-	url = https://gediminasgu@bitbucket.org/gediminasgu/puppet-website.git
+	url = git@bitbucket.org:gediminasgu/puppet-website.git
 [submodule "amr"]
 	path = amr
 	url = git@bitbucket.org:gediminasgu/puppet-amr.git
