@@ -9,7 +9,7 @@ node basenode {
 	$nexus_url_base = '127.0.0.1/nexus'
 	
   class {'nexus':
-    url => 'http://$nexus_url_base',
+    url => "http://${nexus_url_base}",
     username => $nexus_user,
     password => $nexus_password,
   }

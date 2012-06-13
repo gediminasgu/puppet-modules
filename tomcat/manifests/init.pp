@@ -64,3 +64,4 @@ class tomcat{
 		description => "Tomcat log" ,
 		log => "/usr/local/tomcat/logs/catalina.out",
 	}
+}
