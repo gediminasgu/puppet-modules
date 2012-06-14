@@ -43,6 +43,17 @@ class jetty{
 			ensure => "running",
 	}
 	
+	file { "/opt/jetty/jetty_log_symlink.sh":
+      source => "puppet:///modules/jetty/jetty_log_symlink.sh",
+	  mode => 555,
+    }
+	cron { logrotate:
+	  command => "/opt/jetty/jetty_log_symlink.sh",
+	  user => root,
+	  hour => 0,
+	  minute => 0
+	}
+	
 	file { '/opt/jetty/webapps/async-rest':
 	   ensure => absent,
 	   force => true,
@@ -83,9 +94,14 @@ class jetty{
 	   force => true,
 	}
 	
-  puppi::check { 'JETTY-Proc-Check':
-    command => "check_procs -c 1:1 -a jetty",
-    hostwide => 'yes',
-  }
+	puppi::check { 'JETTY-Proc-Check':
+		command => "check_procs -c 1:1 -a jetty",
+		hostwide => 'yes',
+	}
+
+  	puppi::log { "jetty":
+		description => "Jetty log" ,
+		log => "/opt/jetty/logs/stderrout.log",
+	}
 
 }
