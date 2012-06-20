@@ -58,4 +58,10 @@ class mongodb {
     command => "check_tcp -p 27017 -r critical",
     hostwide => 'yes',
   }
+
+  puppi::log { "mongo":
+		description => "MongoDB log" ,
+		log => "/var/log/mongodb/mongodb.log",
+  }
+
 }
