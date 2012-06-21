@@ -7,6 +7,7 @@ node basenode {
 	$nexus_user = 'nexus_user'
 	$nexus_password = 'nexus_password'
 	$nexus_url_base = '127.0.0.1/nexus'
+	$zabbix_password = 'zabbix_password'
 	
   class {'nexus':
     url => "http://${nexus_url_base}",
