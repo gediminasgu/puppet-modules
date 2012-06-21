@@ -62,4 +62,5 @@ node default inherits basenode {
 
   include amr
   include website
+  include zabbix-agent
 }

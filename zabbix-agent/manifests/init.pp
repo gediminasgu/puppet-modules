@@ -1,11 +1,12 @@
 class zabbix-agent {
-case $architecture {
+
   $version = "2.0.0"
   $config_dir = "/etc/zabbix/"
-  $install_dir = "/opt/zabbix/"
+  $zabbix_install_dir = "/opt/zabbix/"
   $zabbix_agentd_conf = "$config_dir/zabbix_agentd.conf"
   $zabbix_user_home_dir = "/var/lib/zabbix"
-  
+
+case $architecture {
   i386: {
     $package = "zabbix_agents_$version.linux2_6_23.i386"
   }
@@ -24,35 +25,35 @@ case $architecture {
         mode 	=> 755,
     }
 
-    file { $install_dir:
+    file { $zabbix_install_dir:
         ensure => "directory",
 		owner 	=> root,
         group 	=> root,
         mode 	=> 755,
     }
 
-    exec { "download":
+    exec { "zabbix_download":
         command => "/usr/bin/wget http://www.zabbix.com/downloads/$version/$package.tar.gz",
-        cwd => "$install_dir",
-        creates => "$install_dir$package.tar.gz",
+        cwd => $zabbix_install_dir,
+        creates => "$zabbix_install_dir$package.tar.gz",
         timeout => 3600,
         tries => 3,
         try_sleep => 15,
-        require => [ File["$install_dir"] ]
+        require => [ File[$zabbix_install_dir] ]
     }
 
-    exec {"untar":
+    exec {"zabbix_untar":
         command => "/bin/tar zxvf $package.tar.gz",
-        cwd => install_dir",
-        creates => "$install_dir/sbin",
-        require => [Exec["download"]]
+        cwd => $zabbix_install_dir,
+        creates => "$zabbix_install_dir/sbin",
+        require => [Exec["zabbix_download"]]
     }
 	
 	file { $zabbix_agentd_conf:
             owner 	=> root,
             group 	=> root,
             mode 	=> 644,
-            content => template("zabbix/zabbix_agentd_conf.erb"),
+            content => template("zabbix-agent/zabbix_agentd_conf.erb"),
 			notify	=> Service['zabbix_agentd'],
             require => [ File["$config_dir"] ];
 	}
@@ -60,8 +61,8 @@ case $architecture {
 	file { "/etc/init.d/zabbix-agent":
 		owner 	=> root,
 		group 	=> root,
-		mode 	=> 644,
-		content => template("zabbix/zabbix_agent_service.erb"),
+		mode => 755,
+		content => template("zabbix-agent/zabbix_agent_service.erb"),
 		notify	=> Service['zabbix_agentd'],
 		require => [ File["$config_dir"] ];
 	}
@@ -80,7 +81,7 @@ case $architecture {
             ensure 		=> running,
 			hasstatus	=> false,
 			hasrestart	=> true,
-            require 	=> [ File["$zabbix_config_dir"], Exec["untar"], File["/etc/init.d/zabbix-agent"] ];
+            require 	=> [ File[$config_dir], Exec["zabbix_untar"], File["/etc/init.d/zabbix-agent"] ];
     }
 	
 	user { 'zabbix':
@@ -96,7 +97,7 @@ case $architecture {
 		ensure => 'present',
 	}
 	
-    $zabbix_user_home_dir:
+    file { $zabbix_user_home_dir:
 		ensure 	=> directory,
 		owner 	=> zabbix,
 		group 	=> zabbix,
