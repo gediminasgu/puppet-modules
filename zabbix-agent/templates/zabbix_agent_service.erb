@@ -5,7 +5,7 @@
 # Written by Alexei Vladishev <alexei.vladishev@zabbix.com>.
 
 NAME=zabbix_agentd
-DAEMON=<%= zabbix_install_dir %>${NAME}
+DAEMON=<%= zabbix_install_dir %>sbin/${NAME}
 DESC="Zabbix agent daemon"
 PID=/tmp/$NAME.pid
 
@@ -14,12 +14,12 @@ test -f $DAEMON || exit 0
 case "$1" in
   start)
         echo "Starting $DESC: $NAME"
-        start-stop-daemon --oknodo --start --pidfile $PID \
+        start-stop-daemon --oknodo --start --pidfile $PID --config <%= zabbix_agentd_conf %> \
                 --exec $DAEMON
         ;;
   stop)
         echo "Stopping $DESC: $NAME"
-        start-stop-daemon --oknodo --stop  --pidfile $PID \
+        start-stop-daemon --oknodo --stop  --pidfile $PID --config <%= zabbix_agentd_conf %> \
                 --exec $DAEMON
         ;;
   restart|force-reload)
