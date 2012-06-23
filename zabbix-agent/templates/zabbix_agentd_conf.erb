@@ -248,3 +248,4 @@ ListenIP=<%= ipaddress %>
 # Default:
 # UserParameter=
 UserParameter=java[*],/usr/lib/nagios/plugins/check_jmx.sh -U service:jmx:rmi:///jndi/rmi://localhost:$1/jmxrmi -O '$2' -A $3 | awk '{print $$6}'
+UserParameter=folder_size[*],du $1 -cb | grep total | cut -f1
