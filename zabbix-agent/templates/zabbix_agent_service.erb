@@ -14,12 +14,12 @@ test -f $DAEMON || exit 0
 case "$1" in
   start)
         echo "Starting $DESC: $NAME"
-        start-stop-daemon --oknodo --start --pidfile $PID --config <%= zabbix_agentd_conf %> \
+        start-stop-daemon --oknodo --start --pidfile $PID \
                 --exec $DAEMON
         ;;
   stop)
         echo "Stopping $DESC: $NAME"
-        start-stop-daemon --oknodo --stop  --pidfile $PID --config <%= zabbix_agentd_conf %> \
+        start-stop-daemon --oknodo --stop  --pidfile $PID \
                 --exec $DAEMON
         ;;
   restart|force-reload)

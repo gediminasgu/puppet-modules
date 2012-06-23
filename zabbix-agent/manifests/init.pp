@@ -3,7 +3,7 @@ class zabbix-agent {
   $version = "2.0.0"
   $config_dir = "/usr/local/etc/"
   $zabbix_install_dir = "/opt/zabbix/"
-  $zabbix_agentd_conf = "$config_dirzabbix_agentd.conf"
+  $zabbix_agentd_conf = "$config_dir/zabbix_agentd.conf"
   $zabbix_user_home_dir = "/var/lib/zabbix"
 
 case $architecture {

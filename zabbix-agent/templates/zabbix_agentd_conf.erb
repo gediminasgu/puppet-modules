@@ -224,7 +224,7 @@ ListenIP=<%= ipaddress %>
 # Include=
 
 # Include=/etc/zabbix/zabbix_agentd.userparams.conf
-Include=/etc/zabbix
+# Include=<%= config_dir %>zabbix
 
 ####### USER-DEFINED MONITORED PARAMETERS #######
 
@@ -247,3 +247,4 @@ Include=/etc/zabbix
 # Mandatory: no
 # Default:
 # UserParameter=
+UserParameter=java[*],/usr/lib/nagios/plugins/check_jmx.sh -U service:jmx:rmi:///jndi/rmi://localhost:$1/jmxrmi -O '$2' -A $3 | awk '{print $$6}'
