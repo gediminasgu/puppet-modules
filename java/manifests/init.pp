@@ -15,7 +15,7 @@ case $architecture {
         ensure => "directory",
     }
     exec { "download_java":
-        command => "/usr/bin/wget http://eesoft.benco.lt:8080/downloads/$package.tar.gz",
+        command => "/usr/bin/wget http://$downloads_url_base/downloads/$package.tar.gz",
         cwd => "/usr/lib/jvm/",
         creates => "/usr/lib/jvm/$package.tar.gz",
         timeout => 3600,
