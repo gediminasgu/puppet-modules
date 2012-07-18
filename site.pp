@@ -28,6 +28,7 @@ node default inherits basenode {
     hostwide => 'yes',
   }
   package { 'php5-mysql': ensure => present }
+  package { 'ntp': ensure => present }
 
   include php5-fpm
   include nginx
