@@ -1,5 +1,5 @@
 class mule{
-	$version = "3.2.1"
+	$version = "3.3.0"
 	$package = "mule-standalone-$version"
 	require mule::params
 	
