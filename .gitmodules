@@ -3,19 +3,19 @@
 	url = git@bitbucket.org:gediminasgu/puppet-nginx.git
 [submodule "puppi"]
 	path = puppi
-	url = https://gediminasgu@github.com/gediminasgu/puppi.git
+	url = git@github.com:gediminasgu/puppi.git
 [submodule "mysql"]
 	path = mysql
-	url = https://gediminasgu@github.com/gediminasgu/puppetlabs-mysql.git
+	url = git@github.com:gediminasgu/puppetlabs-mysql.git
 [submodule "rabbitmq"]
 	path = rabbitmq
-	url = https://gediminasgu@github.com/gediminasgu/puppet-rabbitmq.git
+	url = git@github.com:gediminasgu/puppet-rabbitmq.git
 [submodule "php5-fpm"]
 	path = php5-fpm
-	url = https://gediminasgu@github.com/gediminasgu/puppet-php5-fpm.git
+	url = git@github.com:gediminasgu/puppet-php5-fpm.git
 [submodule "nexus"]
 	path = nexus
-	url = https://gediminasgu@github.com/gediminasgu/puppet-nexus.git
+	url = git@github.com:gediminasgu/puppet-nexus.git
 [submodule "website"]
 	path = website
 	url = git@bitbucket.org:gediminasgu/puppet-website.git
