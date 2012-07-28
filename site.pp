@@ -57,7 +57,7 @@ node default inherits basenode {
   }
 
   puppi::check { 'WEB-DatawarehouseAPI-test':
-    command => 'check_http -H localhost -p 8080 -u "/datawarehouse"',
+    command => 'check_http -H localhost -p 8080 -u "/datawarehouse/data"',
     hostwide => 'yes',
   }
 
