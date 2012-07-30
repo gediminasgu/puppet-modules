@@ -59,13 +59,6 @@ class mule{
 		ensure => present
 	}
 
-	nexus::artifact {'com.meterhub.amr.contract':
-		gav => "com.meterhub:meterhub.amr-contract:1.0.8",
-		repository => "releases",
-		output => "/opt/mule-standalone/lib/shared/default/meterhub.amr-contract-1.0.8.jar",
-		ensure => present
-	}
-
 	nexus::artifact {'jackson-core-asl':
 		gav => "org.codehaus.jackson:jackson-core-asl:1.9.7",
 		repository => "public",
