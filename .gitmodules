@@ -6,7 +6,7 @@
 	url = git@github.com:gediminasgu/puppi.git
 [submodule "mysql"]
 	path = mysql
-	url = git@github.com:gediminasgu/puppetlabs-mysql.git
+	url = git@bitbucket.org:gediminasgu/puppetlabs-mysql.git
 [submodule "rabbitmq"]
 	path = rabbitmq
 	url = git@github.com:gediminasgu/puppet-rabbitmq.git
