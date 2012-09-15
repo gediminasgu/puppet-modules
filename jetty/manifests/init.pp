@@ -15,22 +15,26 @@ class jetty{
         command => "/bin/tar zxvf $package.tar.gz",
         cwd => "/opt",
         creates => "/opt/$package",
+		before  => Class['jetty::is_installed'],
         require => [Exec["download_jetty"]]
     }
 
 	file { '/opt/jetty':
 	    ensure => 'link',
         target => "/opt/$package",
+		before  => Class['jetty::is_installed'],
 	}
 
 	file { '/etc/init.d/jetty':
 	    ensure => 'link',
         target => "/opt/jetty/bin/jetty.sh",
+		before  => Class['jetty::is_installed'],
 	}
 
 	file { '/etc/rc1.d/K99jetty':
 	    ensure => 'link',
 	    target => '/etc/init.d/jetty',
+		before  => Class['jetty::is_installed'],
 	}
 
 	file { '/etc/rc2.d/S99jetty':
@@ -43,6 +47,7 @@ class jetty{
 		path => "/opt/jetty/etc/jetty.xml",
 		mode => 664,
 		content => template("jetty/jetty.xml.erb"),
+		before  => Class['jetty::is_installed'],
 		notify => Service[jetty]
 	}
 
@@ -65,49 +70,49 @@ class jetty{
 	file { '/opt/jetty/webapps/async-rest':
 	   ensure => absent,
 	   force => true,
-		before  => Class['java::is_installed'],
+		before  => Class['jetty::is_installed'],
 	}
 
 	file { '/opt/jetty/webapps/cometd.war':
 	   ensure => absent,
 	   force => true,
-		before  => Class['java::is_installed'],
+		before  => Class['jetty::is_installed'],
 	}
 
 	file { '/opt/jetty/webapps/root':
 	   ensure => absent,
 	   force => true,
-		before  => Class['java::is_installed'],
+		before  => Class['jetty::is_installed'],
 	}
 
 	file { '/opt/jetty/webapps/spdy.war':
 	   ensure => absent,
 	   force => true,
-		before  => Class['java::is_installed'],
+		before  => Class['jetty::is_installed'],
 	}
 
 	file { '/opt/jetty/webapps/test-annotations':
 	   ensure => absent,
 	   force => true,
-		before  => Class['java::is_installed'],
+		before  => Class['jetty::is_installed'],
 	}
 
 	file { '/opt/jetty/webapps/test-jaas':
 	   ensure => absent,
 	   force => true,
-		before  => Class['java::is_installed'],
+		before  => Class['jetty::is_installed'],
 	}
 
 	file { '/opt/jetty/webapps/test-jndi':
 	   ensure => absent,
 	   force => true,
-		before  => Class['java::is_installed'],
+		before  => Class['jetty::is_installed'],
 	}
 
 	file { '/opt/jetty/webapps/test.war':
 	    ensure => absent,
 	    force => true,
-		before  => Class['java::is_installed'],
+		before  => Class['jetty::is_installed'],
 	}
 	
 	puppi::check { 'JETTY-Proc-Check':
@@ -120,5 +125,5 @@ class jetty{
 		log => "/opt/jetty/logs/stderrout.log",
 	}
 	
-	include java::is_installed
+	include jetty::is_installed
 }
