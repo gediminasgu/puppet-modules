@@ -101,5 +101,5 @@ class mule{
 		log => "/opt/mule-standalone/logs/mule.log",
 	}
 	
-	include java::is_installed
+	include mule::is_installed
 }
