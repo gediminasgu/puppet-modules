@@ -15,16 +15,19 @@ class mule{
         command => "/bin/tar zxvf $package.tar.gz",
         cwd => "/opt",
         creates => "/opt/$package",
+		before  => Class['mule::is_installed'],
         require => [Exec["download_mule"]]
     }
 	file { '/opt/mule-standalone':
 	   ensure => 'link',
            target => "/opt/$package",
+		before  => Class['mule::is_installed'],
 	}
 	file {'mule-service':
 		path => "/etc/init.d/mule",
 		mode => 755,
 		content => template("mule/service.erb"),
+		before  => Class['mule::is_installed'],
 		notify => Service[mule]
 	}
 	file { '/etc/rc1.d/K99mule':
@@ -50,6 +53,7 @@ class mule{
 	}
 	service { "mule":
 		ensure => "running",
+		require => [Class['java::is_installed'], Class['mule::is_installed']]
 	}
 
 	nexus::artifact {'activemq-all':
@@ -96,4 +100,6 @@ class mule{
 		description => "Mule log" ,
 		log => "/opt/mule-standalone/logs/mule.log",
 	}
+	
+	include java::is_installed
 }

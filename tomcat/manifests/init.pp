@@ -31,9 +31,10 @@ class tomcat{
 	   ensure => 'link',
 	   target => '/etc/init.d/tomcat',
 	}
-#	service { "tomcat":
-#		ensure => "running",
-#	}
+	service { "tomcat":
+		ensure => "running",
+		require => Class['java::is_installed']
+	}
 
   	file { '/usr/local/tomcat/webapps/ROOT':
 	   ensure => absent,

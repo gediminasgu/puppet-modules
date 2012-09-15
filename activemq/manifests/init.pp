@@ -42,6 +42,7 @@ class activemq {
 	}
 	service { "activemq":
 		ensure => "running",
+		require => Class['java::is_installed']
 	}
 	
   puppi::check { 'ACTIVEMQ-Proc-Check':
