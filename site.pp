@@ -6,7 +6,8 @@
 # puppet apply /etc/puppet/manifests/site.pp
 
 import 'basenode.pp'
-node default inherits basenode {
+node default {
+  require basenode
   include mongodb
   include java
   include activemq
