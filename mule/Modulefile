@@ -1,0 +1,7 @@
+name 'gediminasgu-mule'
+version ''
+
+author ''
+license ''
+dependency 'example42/puppi', '==2.0.0'
+dependency 'cescoffier/nexus', '==0.0.1'

@@ -10,8 +10,8 @@
 [submodule "rabbitmq"]
 	path = rabbitmq
 	url = git@bitbucket.org:gediminasgu/puppet-rabbitmq.git
-[submodule "php5-fpm"]
-	path = php5-fpm
+[submodule "php5_fpm"]
+	path = php5_fpm
 	url = git@bitbucket.org:gediminasgu/puppet-php5-fpm.git
 [submodule "nexus"]
 	path = nexus

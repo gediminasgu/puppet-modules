@@ -1,4 +1,6 @@
-class zabbix-agent {
+class zabbix_agent(
+	$zabbix_password = 'pwd',
+) {
 
   $version = "2.0.0"
   $config_dir = "/usr/local/etc/"
@@ -14,7 +16,7 @@ case $architecture {
     $package = "zabbix_agents_$version.linux2_6_23.amd64"
   }
   default: {
-    fail("architecture $artichitecture in not supported")
+    fail("architecture ${artichitecture} in not supported")
   }
 }
 
@@ -90,7 +92,7 @@ case $architecture {
 		password    => $zabbix_password,
 		shell       => '/bin/bash',
 		gid			=> 'zabbix',
-		managehome	=> 'true',	
+		managehome	=> true,	
 	}
 	
 	group { 'zabbix':

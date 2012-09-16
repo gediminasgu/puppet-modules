@@ -1,0 +1,26 @@
+{
+  "name": "gediminasgu-mule",
+  "author": "",
+  "description": "",
+  "license": "",
+  "project_page": "",
+  "source": "",
+  "summary": "",
+  "version": "",
+  "checksums": {
+    "Modulefile": "85f0fe3b32fb8c38f8dd501886a014cc",
+    "manifests\\init.pp": "80fb582f6a97b9b589bc1d6e974069bb",
+    "manifests\\is_installed.pp": "ac71e2b1a2847c54faa1f37377d2dc8b",
+    "templates\\service.erb": "086d1ea500f56176ab224c7544eadb68"
+  },
+  "dependencies": [
+    {
+      "name": "example42/puppi",
+      "version_requirement": "\u003d\u003d2.0.0"
+    },
+    {
+      "name": "cescoffier/nexus",
+      "version_requirement": "\u003d\u003d0.0.1"
+    }
+  ]
+}

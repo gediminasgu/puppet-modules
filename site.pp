@@ -6,13 +6,32 @@
 # puppet apply /etc/puppet/manifests/site.pp
 
 import 'basenode.pp'
-node default inherits basenode {
+node default {
+  require basenode
   include mongodb
+  
   include java
+  class {'java':
+  	downloads_url_base => $basenode::downloads_url_base,
+  }
+  
   include activemq
   include tomcat
   include jetty
+  
   include mule
+  class {'mule':
+  	deploy_user => $basenode::deploy_user,
+  	deploy_group => $basenode::deploy_group,
+  }
+  
+  include nexus
+  class {'nexus':
+	url => "http://${basenode::nexus_url_base}",
+	username => $basenode::nexus_user,
+	password => $basenode::nexus_password,
+  }
+  
   include rabbitmq
 
   include mysql
@@ -62,6 +81,23 @@ node default inherits basenode {
   }
 
   include amr
+  class {'amr':
+  	nexus_user => $basenode::nexus_user,
+  	nexus_password => $basenode::nexus_password,
+  	nexus_url_base => $basenode::nexus_url_base,
+  	mule_jmx_port => $mule::jmx_port,
+  }
+  
   include website
-  include zabbix-agent
+  class {'website':
+  	downloads_url_base => $basenode::downloads_url_base,
+  	deploy_user => $basenode::deploy_user,
+  	deploy_group => $basenode::deploy_group,
+  	mysql_mhe_user_pw => $basenode::mysql_mhe_user_pw,
+  }
+  
+  include zabbix_agent
+  class {'zabbix_agent':
+  	zabbix_password => $basenode::zabbix_password,
+  }
 }

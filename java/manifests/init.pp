@@ -1,4 +1,6 @@
-class java {
+class java(
+	$downloads_url_base = "",
+) {
 	case $architecture {
 	  i386: {
 		$package = "jre-7u3-linux-i586"
@@ -7,7 +9,7 @@ class java {
 		$package = "jre-7u3-linux-x64"
 	  }
 	  default: {
-		fail("architecture $artichitecture in not supported")
+		fail("architecture ${artichitecture} in not supported")
 	  }
 	}
 
@@ -15,7 +17,7 @@ class java {
         ensure => "directory",
     }
     exec { "download_java":
-        command => "/usr/bin/wget http://$downloads_url_base/downloads/$package.tar.gz",
+        command => "/usr/bin/wget http://${downloads_url_base}/downloads/$package.tar.gz",
         cwd => "/usr/lib/jvm/",
         creates => "/usr/lib/jvm/$package.tar.gz",
         timeout => 3600,

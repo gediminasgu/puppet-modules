@@ -5,7 +5,7 @@
 # Written by Alexei Vladishev <alexei.vladishev@zabbix.com>.
 
 NAME=zabbix_agentd
-DAEMON=<%= zabbix_install_dir %>sbin/${NAME}
+DAEMON=<%= scope.lookupvar('basenode::zabbix_install_dir') %>sbin/${NAME}
 DESC="Zabbix agent daemon"
 PID=/tmp/$NAME.pid
 
