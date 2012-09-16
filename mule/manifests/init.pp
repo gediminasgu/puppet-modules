@@ -41,15 +41,15 @@ class mule{
 	file { "/opt/mule-standalone/apps":
 		ensure => "directory",
 		mode => 755,
-		owner => $deploy_user,
-		group => $deploy_group,
+		owner => $basenode::deploy_user,
+		group => $basenode::deploy_group,
 		require => [File['/opt/mule-standalone/apps']]
 	}
 	file { "/opt/mule-apps":
 		ensure => "directory",
 		mode => 744,
-		owner => $deploy_user,
-		group => $deploy_group
+		owner => $basenode::deploy_user,
+		group => $basenode::deploy_group
 	}
 	service { "mule":
 		ensure => "running",

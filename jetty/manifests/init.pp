@@ -48,6 +48,7 @@ class jetty{
 		mode => 664,
 		content => template("jetty/jetty.xml.erb"),
 		before  => Class['jetty::is_installed'],
+		require => [Exec['unzip_jetty'], File['/opt/jetty']],
 		notify => Service[jetty]
 	}
 

@@ -19,12 +19,12 @@ node default inherits basenode {
   class { 'mysql::server': }
   mysql::db { 'mhe_joomla':
     user     => 'mhe_user',
-    password => $mysql_mhe_user_pw,
+    password => $basenode::mysql_mhe_user_pw,
     host     => 'localhost',
     grant    => ['all'],
   }
   puppi::check { 'MYSQL-MHEDB-Check':
-    command => "check_mysql -d mhe_joomla -u mhe_user -p $mysql_mhe_user_pw",
+    command => "check_mysql -d mhe_joomla -u mhe_user -p $basenode::mysql_mhe_user_pw",
     hostwide => 'yes',
   }
   package { 'php5-mysql': ensure => present }

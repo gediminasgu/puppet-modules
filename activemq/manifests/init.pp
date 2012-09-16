@@ -30,6 +30,7 @@ class activemq {
 		path => "/opt/activemq/conf/activemq.xml",
 		mode => 664,
 		content => template("activemq/activemq.xml.erb"),
+		require => [Exec['unzip_activemq'], File['/opt/activemq']],
 		notify => Service[activemq]
 	}
 	file { '/etc/rc2.d/S20activemq':

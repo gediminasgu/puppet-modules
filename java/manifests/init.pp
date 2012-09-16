@@ -41,6 +41,7 @@ class java {
         command => "/usr/bin/update-alternatives --install /usr/bin/java java /usr/lib/jvm/jre1.7.0_03/bin/java 1",
         unless  => "/usr/bin/test $(readlink /etc/alternatives/java) = /usr/lib/jvm/jre1.7.0_03/bin/java",
 		before  => Class['java::is_installed'],
+		require => Exec["unzip_java"],
     }
 	
 	include java::is_installed
