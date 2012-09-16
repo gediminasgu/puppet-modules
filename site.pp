@@ -49,7 +49,7 @@ node default {
   package { 'php5-mysql': ensure => present }
   package { 'ntp': ensure => present }
 
-  include php5-fpm
+  include php5_fpm
   include nginx
   include nginx::fcgi
   nginx::fcgi::site {"default":
