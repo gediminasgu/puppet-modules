@@ -11,7 +11,7 @@
     "Modulefile": "85f0fe3b32fb8c38f8dd501886a014cc",
     "manifests\\init.pp": "80fb582f6a97b9b589bc1d6e974069bb",
     "manifests\\is_installed.pp": "ac71e2b1a2847c54faa1f37377d2dc8b",
-    "templates\\service.erb": "086d1ea500f56176ab224c7544eadb68"
+    "templates\\service.erb": "d3f66a06cfe53331183b6d3f8ef16a74"
   },
   "dependencies": [
     {

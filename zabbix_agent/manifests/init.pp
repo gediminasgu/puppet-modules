@@ -55,7 +55,7 @@ case $architecture {
             owner 	=> root,
             group 	=> root,
             mode 	=> 644,
-            content => template("zabbix-agent/zabbix_agentd_conf.erb"),
+            content => template("zabbix_agent/zabbix_agentd_conf.erb"),
 			notify	=> Service['zabbix_agentd'],
             require => [ File["$config_dir"] ];
 	}
@@ -64,7 +64,7 @@ case $architecture {
 		owner 	=> root,
 		group 	=> root,
 		mode => 755,
-		content => template("zabbix-agent/zabbix_agent_service.erb"),
+		content => template("zabbix_agent/zabbix_agent_service.erb"),
 		notify	=> Service['zabbix_agentd'],
 		require => [ File["$config_dir"] ];
 	}

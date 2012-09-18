@@ -23,7 +23,7 @@ class activemq {
 		path => "/etc/init.d/activemq",
 		mode => 755,
 		content => template("activemq/activemq-service.erb"),
-		notify => Service[activemq]
+		notify => Exec["start_activemq"]
 	}
 	file {'activemq-config':
 		ensure => present,
@@ -31,7 +31,7 @@ class activemq {
 		mode => 664,
 		content => template("activemq/activemq.xml.erb"),
 		require => [Exec['unzip_activemq'], File['/opt/activemq']],
-		notify => Service[activemq]
+		notify => Exec["start_activemq"]
 	}
 	file { '/etc/rc2.d/S20activemq':
 	   ensure => 'link',
@@ -41,8 +41,9 @@ class activemq {
 	   ensure => 'link',
 	   target => '/etc/init.d/activemq',
 	}
-	service { "activemq":
-		ensure => "running",
+	exec { "start_activemq":
+		command => "/etc/init.d/activemq start",
+		unless => "/etc/init.d/activemq status",
 		require => Class['java::is_installed']
 	}
 	
