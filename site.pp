@@ -70,16 +70,6 @@ node default {
     hostwide => 'yes',
   }
 
-  puppi::check { 'WEB-ManagementAPI-test':
-    command => 'check_http -H localhost -p 8080 -u "/managementapi/classificators/protocols"',
-    hostwide => 'yes',
-  }
-
-  puppi::check { 'WEB-DatawarehouseAPI-test':
-    command => 'check_http -H localhost -p 8080 -u "/datawarehouse/data"',
-    hostwide => 'yes',
-  }
-
   class {'amr':
   	nexus_user => $basenode::nexus_user,
   	nexus_password => $basenode::nexus_password,
