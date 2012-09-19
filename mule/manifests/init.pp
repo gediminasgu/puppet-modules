@@ -32,7 +32,7 @@ class mule(
 		mode => 755,
 		content => template("mule/service.erb"),
 		before  => Class['mule::is_installed'],
-		notify => Service[mule]
+		notify => Exec[mule]
 	}
 	file { '/etc/rc1.d/K99mule':
 	   ensure => 'link',
@@ -55,8 +55,10 @@ class mule(
 		owner => $deploy_user,
 		group => $deploy_group
 	}
-	service { "mule":
-		ensure => "running",
+	exec { "mule":
+		command => "/etc/init.d/mule start 2>&1",
+		refresh => "/etc/init.d/mule stop 2>&1; sleep 5; /etc/init.d/mule start 2>&1",
+		unless => "/etc/init.d/mule status 2>&1",
 		require => [Class['java::is_installed'], Class['mule::is_installed']]
 	}
 

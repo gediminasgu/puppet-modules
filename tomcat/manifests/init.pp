@@ -24,7 +24,7 @@ class tomcat{
 		mode => 755,
 		content => template("tomcat/tomcat-service.erb"),
 		before => Class['tomcat::is_installed'],
-#		notify => Service[tomcat]
+		notify => Exec[tomcat]
 	}
 	file { '/etc/rc1.d/K99tomcat':
 	   ensure => 'link',
@@ -36,11 +36,12 @@ class tomcat{
 	   target => '/etc/init.d/tomcat',
 		before => Class['tomcat::is_installed'],
 	}
-	service { "tomcat":
-		ensure => "running",
+	exec { "tomcat":
+		unless => "/etc/init.d/tomcat status",
+		command => "/etc/init.d/tomcat start 2>&1",
+		refresh => "/etc/init.d/tomcat stop 2>&1; sleep 5; /etc/init.d/tomcat start 2>&1",
 		require => [Class['java::is_installed'], Class['tomcat::is_installed']]
 	}
-
   	file { '/usr/local/tomcat/webapps/ROOT':
 	   ensure => absent,
 	   force => true,

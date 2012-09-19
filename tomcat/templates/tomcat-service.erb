@@ -11,5 +11,9 @@ restart)
 sh /usr/local/tomcat/bin/shutdown.sh
 sh /usr/local/tomcat/bin/startup.sh
 ;;
+status)
+ps ax | grep -v grep | grep tomcat > /dev/null
+exit $?
+;;
 esac
 exit 0

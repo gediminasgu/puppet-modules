@@ -9,7 +9,7 @@
   "version": "",
   "checksums": {
     "Modulefile": "85f0fe3b32fb8c38f8dd501886a014cc",
-    "manifests\\init.pp": "80fb582f6a97b9b589bc1d6e974069bb",
+    "manifests\\init.pp": "75dd684013f5593e809b26389c0691f2",
     "manifests\\is_installed.pp": "ac71e2b1a2847c54faa1f37377d2dc8b",
     "templates\\service.erb": "d3f66a06cfe53331183b6d3f8ef16a74"
   },

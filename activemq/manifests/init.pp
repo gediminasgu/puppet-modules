@@ -42,8 +42,9 @@ class activemq {
 	   target => '/etc/init.d/activemq',
 	}
 	exec { "start_activemq":
-		command => "/etc/init.d/activemq start",
-		unless => "/etc/init.d/activemq status",
+		command => "/etc/init.d/activemq start 2>&1",
+		refresh => "/etc/init.d/activemq stop 2>&1; sleep 5; /etc/init.d/activemq start 2>&1",
+		unless => "/etc/init.d/activemq status 2>&1",
 		require => Class['java::is_installed']
 	}
 	
