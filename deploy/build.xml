@@ -1,0 +1,62 @@
+<?xml version="1.0" ?> 
+<project name="AntExample1" default="package" xmlns:artifact="antlib:org.apache.maven.artifact.ant">
+	<taskdef resource="net/sf/antcontrib/antlib.xml">
+	    <classpath>
+	        <pathelement location="../lib/ant/ant-contrib-1.0b3.jar" />
+	    </classpath>
+	</taskdef>
+	<property name="version.file" value="../version.php" />
+
+	<!-- define Maven coordinates -->
+	<property name="groupId" value="com.meterhub" />
+	<property name="artifactId" value="puppet" />
+	<property name="version" value="2.4.1" />
+
+	<!-- define artifacts' name, which follows the convention of Maven -->
+	<property name="maven-jar" value="${artifactId}-${version}.zip" />
+
+	<!-- defined maven snapshots and staging repository id and url -->
+	<property name="maven-snapshots-repository-id" value="snapshots" />
+	<property name="maven-snapshots-repository-url" value="http://192.168.1.124:8088/nexus/content/repositories/snapshots/" />
+	<property name="maven-staging-repository-id" value="releases" />
+	<property name="maven-staging-repository-url" value="http://192.168.1.124:8088/nexus/content/repositories/releases/" />
+	
+	<target name="package">
+		<tstamp>
+			<format property="TODAY" pattern="yyyy-MM-dd"/>
+		</tstamp>
+		<buildnumber/>
+
+  <echo file="${version.file}">&lt;?php
+// System Build Number. Do not edit!
+$system_version="${version}.${build.number}";
+$system_build_date="${TODAY}";
+		</echo>
+
+		<zip destfile="${maven-jar}" compress="true" >
+			<fileset dir="..">
+			    <include name="**/*"/>
+				<exclude name="**/.*/**" />
+				<exclude name="Geppetto.AutoFileSystemLinked/**" />
+			    <exclude name="deploy/**"/>
+			</fileset>
+		</zip>
+	</target>
+	
+	<!-- before this, update project version (both build.xml and pom.xml) from SNAPSHOT to RELEASE -->
+	<target name="deploy" description="deploy release version to Maven staging repository">
+		<buildnumber/>
+		<!-- sign and deploy the main artifact -->
+		<artifact:mvn>
+			<arg value="org.apache.maven.plugins:maven-deploy-plugin:2.6:deploy-file" />
+			<arg value="-Durl=${maven-staging-repository-url}" />
+			<arg value="-DrepositoryId=${maven-staging-repository-id}" />
+			<arg value="-DpomFile=pom.xml" />
+			<arg value="-Dfile=${maven-jar}" />
+			<arg value="-Dversion=${version}.${build.number}" />
+			<arg value="-DgeneratePom=true" />
+			<arg value="-Dpackaging=zip" />
+			<arg value="-DupdateReleaseInfo=true" />
+		</artifact:mvn>
+	</target>
+</project>
