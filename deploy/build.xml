@@ -17,9 +17,9 @@
 
 	<!-- defined maven snapshots and staging repository id and url -->
 	<property name="maven-snapshots-repository-id" value="snapshots" />
-	<property name="maven-snapshots-repository-url" value="http://192.168.1.124:8088/nexus/content/repositories/snapshots/" />
+	<property name="maven-snapshots-repository-url" value="http://192.168.1.149:8081/nexus/content/repositories/snapshots/" />
 	<property name="maven-staging-repository-id" value="releases" />
-	<property name="maven-staging-repository-url" value="http://192.168.1.124:8088/nexus/content/repositories/releases/" />
+	<property name="maven-staging-repository-url" value="http://192.168.1.149:8081/nexus/content/repositories/releases/" />
 	
 	<target name="package">
 		<tstamp>

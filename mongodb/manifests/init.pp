@@ -38,7 +38,10 @@ class mongodb {
 		enable => true,
 		ensure => running,
 		require => Package[$mongodb::params::package],
+		before  => Class['mongodb::is_installed'],
 	}
+
+	include mongodb::is_installed
 	
 	define replica_set {
 		file { "/etc/init/mongodb.conf":

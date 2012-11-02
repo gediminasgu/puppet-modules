@@ -1,13 +1,19 @@
-class tomcat{
-	$version = "7.0.29"
-	$package = "apache-tomcat-$version"
+class tomcat(
+        $nexus_user = '',
+        $nexus_password = '',
+        $nexus_url_base = '',
+) {
+	$version = "7.0.32"
+	$package = "tomcat-$version"
+
     exec { "download_tomcat":
-        command => "/usr/bin/wget http://apache.mirror.vu.lt/apache/tomcat/tomcat-7/v$version/bin/$package.tar.gz",
+        command => "/usr/bin/wget http://$nexus_user:$nexus_password@$nexus_url_base/service/local/repositories/releases/content/apache/tomcat/tomcat/$version/$package.gz",
         cwd => "/usr/local",
-        creates => "/usr/local/$package.tar.gz"
+        creates => "/usr/local/$package.gz",
+        unless => "/usr/bin/test -e /usr/local/tomcat/webapps/",
     }
     exec {"unzip_tomcat":
-        command => "/bin/tar zxvf $package.tar.gz",
+        command => "/bin/tar zxvf $package.gz",
         cwd => "/usr/local",
         creates => "/usr/local/$package",
         require => [Exec["download_tomcat"]],
@@ -15,7 +21,8 @@ class tomcat{
     }
 	file { '/usr/local/tomcat':
 		ensure => 'link',
-        target => "/usr/local/$package",
+                target => "/usr/local/$package",
+                require => Exec['unzip_tomcat'],
 		before => Class['tomcat::is_installed'],
 	}
 	file {'tomcat-service':
